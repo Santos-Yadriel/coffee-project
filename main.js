@@ -1,11 +1,9 @@
 "use strict"
-
+const coffeeSearch = document.querySelector('#coffee-search');
 function renderCoffee(coffee) {
-    let html = '<tr class="coffee">';
-    html += `<td>${coffee.id}</td>`;
-    html += `<td>${coffee.name}</td>`;
-    html += `<td>${coffee.roast}</td>`;
-    html += '</tr>';
+    let html = '<section class="coffee">';
+    html += `<div id="${coffee.id} ${coffee.roast}"><h4>${coffee.name}</h4><p>${coffee.roast}</p> </div>`;
+    html += '</section>';
 
     return html;
 }
@@ -19,14 +17,16 @@ function renderCoffees(coffees) {
 }
 
 function updateCoffees(e) {
-    e.preventDefault(); // don't submit the form, we just want to update the data
+    e.preventDefault();
     const selectedRoast = roastSelection.value;
-    const filteredCoffees = [];
-    coffees.forEach( coffee => {
-        if (coffee.roast === selectedRoast) {
-            filteredCoffees.push(coffee);
-        }
+    const searchTerm = coffeeSearch.value.toLowerCase(); // Convert to lowercase for case-insensitive search
+
+    const filteredCoffees = coffees.filter(coffee => {
+        const isRoastMatch = selectedRoast === 'all' || coffee.roast === selectedRoast;
+        const isNameMatch = coffee.name.toLowerCase().includes(searchTerm);
+        return isRoastMatch && isNameMatch;
     });
+
     tbody.innerHTML = renderCoffees(filteredCoffees);
 }
 
@@ -52,6 +52,7 @@ const tbody = document.querySelector('#coffees');
 const submitButton = document.querySelector('#submit');
 const roastSelection = document.querySelector('#roast-selection');
 
-tbody.innerHTML = renderCoffees(coffees);
+tbody.innerHTML = renderCoffees(coffees.reverse());
 
 submitButton.addEventListener('click', updateCoffees);
+coffeeSearch.addEventListener('input', updateCoffees);

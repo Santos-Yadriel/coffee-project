@@ -2,26 +2,41 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>Santos & Yadriel Coffee House</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>Coffee!</h1>
-
+<!--//Search Bar for coffees--------------- -->
     <form>
-        <label for="roast-selection"></label>
+        <label for="roast-selection">Select Roast:</label>
         <select id="roast-selection">
-            <option>light</option>
-            <option>medium</option>
-            <option>dark</option>
+            <option>All</option>
+            <option>Light</option>
+            <option>Medium</option>
+            <option>Dark</option>
         </select>
+        </select>
+        <label for="coffee-search">Search by Name:</label>
+        <input type="text" id="coffee-search" name="search" placeholder="Search by coffee name">
+        <input id="submit" type="submit" />
+    </form>
+<!--// Add coffee form ---------------------- -->
+    <form id="add-coffee-form">
+        <label for="add-roast-selection">Select Roast:</label>
+        <select id="add-roast-selection">
+            <option>Light</option>
+            <option>Medium</option>
+            <option>Dark</option>
+        </select>
+        <label for="add-coffee">Add Name:</label>
+        <input type="text" id="add-coffee" name="search" placeholder="Add Coffee Name">
         <input id="submit" type="submit" />
     </form>
 
     <table>
         <thead>
             <tr>
-                <th>ID</th>
                 <th>NAME</th>
                 <th>ROAST</th>
             </tr>
