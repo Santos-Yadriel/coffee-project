@@ -5,18 +5,19 @@ const submitButton = document.querySelector('#submit');
 const tbody = document.querySelector('#coffees');
 
 function renderCoffee(coffee) {
-    let html = '<tr class="coffee">';
-    html += `<td>${coffee.id}</td>`;
-    html += `<td>${coffee.name}</td>`;
-    html += `<td>${coffee.roast}</td>`;
-    html += '</tr>';
+    let html = '<section class="coffee">';
+    html += `<div id="${coffee.id}"><h2>${coffee.name}</h2><p>${coffee.roast}</p></div>`;
+    html += '</section>';
     return html;
 }
 
 function renderCoffees(coffees) {
+    // Sort the coffees array by id in ascending order
+    const sortedCoffees = coffees.sort((a, b) => b.id - a.id);
+
     let html = '';
-    for (let i = coffees.length - 1; i >= 0; i--) {
-        html += renderCoffee(coffees[i]);
+    for (let i = sortedCoffees.length - 1; i >= 0; i--) {
+        html += renderCoffee(sortedCoffees[i]);
     }
     return html;
 }
@@ -76,7 +77,7 @@ addCoffeeForm.addEventListener('submit', function (e) {
 
 
 
-tbody.innerHTML = renderCoffees(coffees.reverse());
+tbody.innerHTML = renderCoffees(coffees);
 
 // submitButton.addEventListener('click', updateCoffees);
 coffeeSearch.addEventListener('input', updateCoffees);
