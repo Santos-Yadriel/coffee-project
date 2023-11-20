@@ -1,16 +1,21 @@
-"use strict"
-const coffeeSearch = document.querySelector('#coffee-search');
-function renderCoffee(coffee) {
-    let html = '<section class="coffee">';
-    html += `<div id="${coffee.id} ${coffee.roast}"><h4>${coffee.name}</h4><p>${coffee.roast}</p> </div>`;
-    html += '</section>';
+"use strict";
 
+const coffeeSearch = document.querySelector('#coffee-search');
+const submitButton = document.querySelector('#submit');
+const tbody = document.querySelector('#coffees');
+
+function renderCoffee(coffee) {
+    let html = '<tr class="coffee">';
+    html += `<td>${coffee.id}</td>`;
+    html += `<td>${coffee.name}</td>`;
+    html += `<td>${coffee.roast}</td>`;
+    html += '</tr>';
     return html;
 }
 
 function renderCoffees(coffees) {
     let html = '';
-    for(let i = coffees.length - 1; i >= 0; i--) {
+    for (let i = coffees.length - 1; i >= 0; i--) {
         html += renderCoffee(coffees[i]);
     }
     return html;
@@ -18,11 +23,11 @@ function renderCoffees(coffees) {
 
 function updateCoffees(e) {
     e.preventDefault();
-    const selectedRoast = roastSelection.value;
-    const searchTerm = coffeeSearch.value.toLowerCase(); // Convert to lowercase for case-insensitive search
+    const selectedRoast = roastSelection.value.toLowerCase();
+    const searchTerm = coffeeSearch.value.toLowerCase();
 
     const filteredCoffees = coffees.filter(coffee => {
-        const isRoastMatch = selectedRoast === 'all' || coffee.roast === selectedRoast;
+        const isRoastMatch = selectedRoast === 'all' || coffee.roast.toLowerCase() === selectedRoast;
         const isNameMatch = coffee.name.toLowerCase().includes(searchTerm);
         return isRoastMatch && isNameMatch;
     });
@@ -31,7 +36,7 @@ function updateCoffees(e) {
 }
 
 // from http://www.ncausa.org/About-Coffee/Coffee-Roasts-Guide
-const coffees = [
+const coffees =JSON.parse(localStorage.getItem('coffees')) ||[
     {id: 1, name: 'Light City', roast: 'light'},
     {id: 2, name: 'Half City', roast: 'light'},
     {id: 3, name: 'Cinnamon', roast: 'light'},
@@ -48,11 +53,31 @@ const coffees = [
     {id: 14, name: 'French', roast: 'dark'},
 ];
 
-const tbody = document.querySelector('#coffees');
-const submitButton = document.querySelector('#submit');
 const roastSelection = document.querySelector('#roast-selection');
+const addCoffeeForm = document.querySelector('#add-coffee-form');
+
+addCoffeeForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    let coffeeName = document.querySelector('#add-coffee-name').value;
+    let roastSelectElement = document.querySelector('#add-coffee-roast');
+    let selectedRoast = roastSelectElement.options[roastSelectElement.selectedIndex].text;
+
+    let newCoffee = {
+        id: coffees.length + 1,
+        name: coffeeName,
+        roast: selectedRoast
+    };
+
+    coffees.push(newCoffee);
+    localStorage.setItem('coffees', JSON.stringify(coffees));
+    tbody.innerHTML = renderCoffees(coffees);
+    addCoffeeForm.reset();
+});
+
+
 
 tbody.innerHTML = renderCoffees(coffees.reverse());
 
 submitButton.addEventListener('click', updateCoffees);
 coffeeSearch.addEventListener('input', updateCoffees);
+roastSelection.addEventListener('change', updateCoffees);
