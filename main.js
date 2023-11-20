@@ -35,7 +35,7 @@ function updateCoffees(e) {
     tbody.innerHTML = renderCoffees(filteredCoffees);
 }
 
-// from http://www.ncausa.org/About-Coffee/Coffee-Roasts-Guide
+// from
 const coffees =JSON.parse(localStorage.getItem('coffees')) ||[
     {id: 1, name: 'Light City', roast: 'light'},
     {id: 2, name: 'Half City', roast: 'light'},
@@ -78,6 +78,6 @@ addCoffeeForm.addEventListener('submit', function (e) {
 
 tbody.innerHTML = renderCoffees(coffees.reverse());
 
-submitButton.addEventListener('click', updateCoffees);
+// submitButton.addEventListener('click', updateCoffees);
 coffeeSearch.addEventListener('input', updateCoffees);
 roastSelection.addEventListener('change', updateCoffees);
