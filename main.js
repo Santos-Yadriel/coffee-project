@@ -1,12 +1,12 @@
 "use strict";
 
 const coffeeSearch = document.querySelector('#coffee-search');
-const submitButton = document.querySelector('#submit');
+// const submitButton = document.querySelector('#submit');
 const tbody = document.querySelector('#coffees');
 
 function renderCoffee(coffee) {
-    let html = '<section class="coffee">';
-    html += `<div id="${coffee.id}"><h2>${coffee.name}</h2><p>${coffee.roast}</p></div>`;
+    let html = '<section id="card" class="coffee">';
+    html += `<div id="${coffee.id}"><h3>${coffee.name}</h3><p>${coffee.roast}</p></div>`;
     html += '</section>';
     return html;
 }
@@ -62,13 +62,11 @@ addCoffeeForm.addEventListener('submit', function (e) {
     let coffeeName = document.querySelector('#add-coffee-name').value;
     let roastSelectElement = document.querySelector('#add-coffee-roast');
     let selectedRoast = roastSelectElement.options[roastSelectElement.selectedIndex].text;
-
     let newCoffee = {
         id: coffees.length + 1,
         name: coffeeName,
         roast: selectedRoast
     };
-
     coffees.push(newCoffee);
     localStorage.setItem('coffees', JSON.stringify(coffees));
     tbody.innerHTML = renderCoffees(coffees);
