@@ -43,6 +43,7 @@ h3 {
 }
 
 p {
+    font-size: 12px;
     margin-bottom: 0
 }
 
@@ -122,8 +123,6 @@ footer h1 {
 }
 
 footer {
-    position: absolute;
-    bottom: 0;
     font-family: 'Unna', serif;
     background-color: rgba(255, 255, 255, .40);
 }
