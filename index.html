@@ -16,10 +16,10 @@
 <header>
     <h2><em>Coffee!</em></h2>
 </header>
-<hr>
-<main>
-    <!--//Search Bar for coffees--------------- -->
-    <section class="container">
+
+<!-- **** Nav section **** -->
+<nav class="navbar">
+    <div class="container-fluid">
         <form class="filter-form">
             <label for="roast-selection">Select Roast:</label>
             <select id="roast-selection">
@@ -33,8 +33,6 @@
             <input type="text" id="coffee-search" name="search" placeholder="Search by coffee name">
             <!--        <input id="submit" type="submit" />-->
         </form>
-
-        <!--// Add coffee form ---------------------- -->
         <form id="add-coffee-form" class="add-form">
             <label for="add-coffee-name"> Add a Coffee!</label>
             <input type="text" id="add-coffee-name" name="add-coffee-name" placeholder="Name" required>
@@ -46,12 +44,15 @@
             </select>
             <input type="submit" value="Add Coffee">
         </form>
-    </section>
-</main>
+    </div>
+</nav>
+
+
 <div class="row">
 <aside id="coffees" class="coffee-list col-6">
-<!--    <div id="coffees"></div>-->
+
 </aside>
+<!--   ***** animated Coffee ******  -->
 <!--************* New section **************-->
 <footer class="col-6">
     <div class="options">

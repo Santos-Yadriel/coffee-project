@@ -44,16 +44,16 @@ p{
     margin-bottom: 0
 }
 
-main {
-    font-size: 1.5em;
+nav {
+
     background-color: rgba(255, 255, 255, .40);
 }
 
-main .filter-form {
+nav .filter-form {
     font-family: 'Unna', serif;
 }
 
-main .add-form {
+nav .add-form {
     font-family: 'Unna', serif;
 }
 #card {
