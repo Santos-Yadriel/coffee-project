@@ -37,9 +37,11 @@ h2 {
     color: black;
     background-color: rgba(255, 255, 255, .40);
 }
+
 h3{
     margin: 0;
 }
+
 p{
     margin-bottom: 0
 }
@@ -56,6 +58,7 @@ nav .filter-form {
 nav .add-form {
     font-family: 'Unna', serif;
 }
+
 #card {
     margin: .5em;
     user-select: none;
@@ -74,11 +77,13 @@ nav .add-form {
     align-items: center;
     justify-content: space-around;
 }
+
 #card:hover{
     cursor: pointer;
     border-width: 4px;
     background: rgba(255, 255, 255, 0.9);
 }
+
 aside {
     display: flex;
     flex-wrap: wrap;
